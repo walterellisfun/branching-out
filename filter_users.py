@@ -3,19 +3,21 @@ import json
 def filter_users_by_name(name):
     with open("users.json", "r") as file:
         users = json.load(file)
-
     filtered_users = [user for user in users if user["name"] == name]
-
     for user in filtered_users:
         print(user)
 
 def filter_users_by_age(age):
     with open("users.json", "r") as file:
         users = json.load(file)
-
-    # compare the integer from JSON with the integer entered
     filtered_users = [user for user in users if user["age"] == age]
+    for user in filtered_users:
+        print(user)
 
+def filter_users_by_email(email):
+    with open("users.json", "r") as file:
+        users = json.load(file)
+    filtered_users = [user for user in users if user["email"] == email]
     for user in filtered_users:
         print(user)
 
@@ -31,5 +33,8 @@ if __name__ == "__main__":
             filter_users_by_age(age_to_search)
         except ValueError:
             print("Invalid age entered. Please enter a number.")
+    elif filter_option == "email":
+        email_to_search = input("Enter an email to filter users: ")
+        filter_users_by_email(email_to_search)
     else:
         print("Filtering by that option is not yet supported.")
